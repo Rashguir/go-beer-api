@@ -1,8 +1,11 @@
 package security
 
 import (
+	"fmt"
+	"log"
 	"time"
 	"github.com/dgrijalva/jwt-go"
+	req "github.com/dgrijalva/jwt-go/request"
 	"github.com/gin-gonic/gin"
 )
 
@@ -29,4 +32,30 @@ func GenerateToken(c *gin.Context) {
 		return
 	}
 	c.JSON(200, gin.H{"status": "success", "token": ss})
+}
+
+// VerifyToken verifies recieved token
+func VerifyToken(c *gin.Context) {
+	tokenString, err := req.HeaderExtractor{"Token"}.ExtractToken(c.Request)
+	if err != nil {
+		fmt.Println(err)
+		c.AbortWithStatus(403)
+		return
+	}
+
+	token, err := jwt.ParseWithClaims(tokenString, &userClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return signingKey, nil
+	})
+	if err != nil {
+		c.AbortWithStatus(403)
+		return
+	}
+
+	if claims, ok := token.Claims.(*userClaims); ok && token.Valid {
+		log.Printf("%v %v %v", claims.Role, claims.StandardClaims.ExpiresAt, claims.StandardClaims.Issuer)
+	} else {
+		log.Println("L74")
+		c.AbortWithStatus(403)
+		return
+	}
 }

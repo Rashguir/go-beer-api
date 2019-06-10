@@ -27,3 +27,10 @@ func GetBeerHandler(c *gin.Context) {
 
 	c.JSON(404, gin.H{"status": "not found"})
 }
+
+// CountBeersHandler ...
+func CountBeersHandler(c *gin.Context) {
+	beers := datasource.GetBeers()
+
+	c.JSON(200, len(beers))
+}
