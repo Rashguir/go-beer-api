@@ -7,4 +7,19 @@ This simple API only provides 2 routes as of today :
 
 - `GET /beers` allows you to get all the beers without pagination
 - `GET /beers/:id` allows you to get one beer per ID
+- `GET /beersCount` allows you to count how many beers will be returned
 
+Authentication
+--------------
+
+To authenticate yourself, use this route:
+
+- `GET /login`
+
+It's response will contain a `token`.
+
+To call other routes in this API, use this header:
+
+```
+Token: {{the token you got from /login}}
+```
