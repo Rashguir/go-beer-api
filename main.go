@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/user/rest-api/controller"
+	"./controller"
 	"github.com/gin-gonic/gin"
 )
 

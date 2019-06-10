@@ -2,7 +2,7 @@ package controller
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/user/rest-api/datasource"
+	"../datasource"
 )
 
 // AllBeersHandler ...

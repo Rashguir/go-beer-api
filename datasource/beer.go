@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"encoding/json"
-	"github.com/user/rest-api/model"
+	"../model"
 )
 
 // GetBeers as objects, from file
