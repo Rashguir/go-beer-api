@@ -2,6 +2,7 @@ package main
 
 import (
 	"./controller"
+	"./security"
 	"github.com/gin-gonic/gin"
 )
 
@@ -19,6 +20,9 @@ var routes = []route{
 
 func main() {
 	router := gin.Default()
+
+	router.GET("/login", gin.BasicAuth(gin.Accounts{"toto": "qwerty"}), security.GenerateToken)
+
 	for _, r := range routes {
 		router.Handle(r.Method, r.Pattern, r.HandlerFunc)
 	}
