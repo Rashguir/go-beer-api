@@ -1,14 +1,14 @@
 package model
 
-// BeerDatasetElement ...
-type BeerDatasetElement struct {
-	DatasetID string `json:"datasetId"`
-	RecordID string `json:"recordId"`
-	Fields Beer `json:"fields"`
-}
+import "time"
 
 // Beer ...
 type Beer struct {
+	PK        uint `gorm:"primary_key"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time `sql:"index"`
+
 	ID string `json:"id"`
 	Name string `json:"name"`
 	ABV float32 `json:"abv"`
@@ -18,4 +18,3 @@ type Beer struct {
 	Country string `json:"country"`
 	State string `json:"state"`
 }
-

@@ -29,4 +29,3 @@ func GetBeers() (beers []model.BeerDatasetElement) {
 
 	return datasetElements
 }
-	
