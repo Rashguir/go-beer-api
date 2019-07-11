@@ -7,8 +7,6 @@ services:
       - db
     ports:
       - 8000:80
-    volumes:
-      - .:/go/src/app
 
   db:
     image: postgres:11.3-alpine
@@ -18,4 +16,4 @@ services:
       POSTGRES_DB: db_name
       POSTGRES_PASSWORD: db_password
     ports:
-      - 54320:5432
+      - 54322:5432

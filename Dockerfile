@@ -1,17 +1,23 @@
-FROM golang:1.12.5-alpine3.9
+FROM golang:1.12.6-alpine3.10 as go-build
 
-MAINTAINER <rashguir@gmail.com> Nicolas Sicard
+WORKDIR /app
 
-WORKDIR /go/src/app
-RUN apk update; \
-    apk add --no-cache -q -f \ 
+RUN apk update && \
+    apk --no-cache add \
         git
 
+COPY . /app
 
-#COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o app .
 
-#RUN go get -d -v ./...
-#RUN go install -v ./...
 
-#CMD ["app"]
+FROM alpine:latest
+
+RUN apk --no-cache add ca-certificates
+
+WORKDIR /app
+
+COPY --from=go-build /app .
+
+CMD ["./app"]
 
