@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./controller"
-	"./security"
+	"beerapi/controller"
+	"beerapi/security"
 	"github.com/gin-gonic/gin"
-	"./model"
+	"beerapi/model"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 

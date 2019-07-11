@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"encoding/json"
-	"../model"
+	"beerapi/model"
 )
 
 // GetBeers as objects, from file

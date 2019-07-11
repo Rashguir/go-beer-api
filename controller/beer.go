@@ -1,10 +1,11 @@
 package controller
 
 import (
-	"github.com/gin-gonic/gin"
-	"../datasource"
-	"../model"
+	"beerapi/datasource"
+	"beerapi/model"
 	"fmt"
+
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 )
 
